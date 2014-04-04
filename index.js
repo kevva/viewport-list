@@ -14,11 +14,18 @@ module.exports = function (item, cb) {
     var items = [];
     var ret = [];
 
-    item = Array.isArray(item) ? item : [item];
-    item.forEach(function (name) {
-        name = name.split(' ').join('').toLowerCase();
-        items.push(name);
-    });
+    if (!cb && typeof item === 'function') {
+        cb = item;
+        item = null;
+    }
+
+    if (item) {
+        item = Array.isArray(item) ? item : [item];
+        item.forEach(function (name) {
+            name = name.split(' ').join('').toLowerCase();
+            items.push(name);
+        });
+    }
 
     got('http://viewportsizes.com/devices.json', function (err, res) {
         if (err) {
@@ -27,6 +34,10 @@ module.exports = function (item, cb) {
 
         var arr = [];
         var sizes = JSON.parse(res);
+
+        if (!item) {
+            return cb(null, sizes);
+        }
 
         items.forEach(function (item) {
             var i = sizes.filter(function (size) {
