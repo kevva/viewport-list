@@ -37,7 +37,17 @@ module.exports = function (item, cb) {
         var sizes = JSON.parse(res);
 
         if (!item) {
-            return cb(null, sizes);
+            sizes.forEach(function (item) {
+                ret.push({
+                    name: slugify(item['Device Name']).toLowerCase(),
+                    platform: item.Platform,
+                    os: item['OS Version'],
+                    size: item['Portrait Width'] + 'x' + item['Landscape Width'],
+                    release: item['Release Date']
+                });
+            });
+
+            return cb(null, ret);
         }
 
         items.forEach(function (item) {
