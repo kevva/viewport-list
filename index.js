@@ -13,6 +13,8 @@ var got = require('got');
 module.exports = function (item, cb) {
     var ret = [];
 
+    item = item.split(' ').join('').toLowerCase();
+
     got('http://viewportsizes.com/devices.json', function (err, res) {
         if (err) {
             return cb(err);
@@ -20,7 +22,7 @@ module.exports = function (item, cb) {
 
         var sizes = JSON.parse(res);
         var arr = sizes.filter(function (size) {
-            return size['Device Name'].split(' ').join('').toLowerCase().indexOf(item.toLowerCase()) !== -1;
+            return size['Device Name'].split(' ').join('').toLowerCase().indexOf(item) !== -1;
         });
 
         if (arr.length === 0) {
