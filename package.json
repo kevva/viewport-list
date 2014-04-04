@@ -25,7 +25,8 @@
     "viewport"
   ],
   "dependencies": {
-    "got": "^0.1.0"
+    "got": "^0.1.0",
+    "slugify": "^0.1.0"
   },
   "devDependencies": {
     "mocha": "^1.18.2"
