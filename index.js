@@ -11,18 +11,29 @@ var got = require('got');
  */
 
 module.exports = function (item, cb) {
+    var items = [];
     var ret = [];
 
-    item = item.split(' ').join('').toLowerCase();
+    item = Array.isArray(item) ? item : [item];
+    item.forEach(function (name) {
+        name = name.split(' ').join('').toLowerCase();
+        items.push(name);
+    });
 
     got('http://viewportsizes.com/devices.json', function (err, res) {
         if (err) {
             return cb(err);
         }
 
+        var arr = [];
         var sizes = JSON.parse(res);
-        var arr = sizes.filter(function (size) {
-            return size['Device Name'].split(' ').join('').toLowerCase().indexOf(item) !== -1;
+
+        items.forEach(function (item) {
+            var i = sizes.filter(function (size) {
+                return size['Device Name'].split(' ').join('').toLowerCase().indexOf(item) !== -1;
+            });
+
+            arr = arr.concat(i);
         });
 
         if (arr.length === 0) {
@@ -31,7 +42,7 @@ module.exports = function (item, cb) {
 
         arr.forEach(function (item) {
             ret.push({
-                name: item['Device Name'].split(' ').join('').toLowerCase(),
+                name: item['Device Name'],
                 platform: item.Platform,
                 os: item['OS Version'],
                 size: item['Portrait Width'] + 'x' + item['Landscape Width'],
