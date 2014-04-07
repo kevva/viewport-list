@@ -30,7 +30,8 @@
   "dependencies": {
     "get-stdin": "^0.1.0",
     "got": "^0.1.0",
-    "slugify": "^0.1.0"
+    "slugify": "^0.1.0",
+    "to-csv": "^0.0.1"
   },
   "devDependencies": {
     "mocha": "^1.18.2"
