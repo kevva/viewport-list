@@ -12,6 +12,9 @@
   "engines": {
     "node": ">=0.10.0"
   },
+  "bin": {
+    "viewport": "cli.js"
+  },
   "scripts": {
     "test": "mocha --reporter list"
   },
@@ -25,6 +28,7 @@
     "viewport"
   ],
   "dependencies": {
+    "get-stdin": "^0.1.0",
     "got": "^0.1.0",
     "slugify": "^0.1.0"
   },
