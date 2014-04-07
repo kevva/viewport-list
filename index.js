@@ -20,7 +20,7 @@ module.exports = function (item, cb) {
         item = null;
     }
 
-    if (item) {
+    if (item && item.length !== 0) {
         item = Array.isArray(item) ? item : [item];
         item.forEach(function (name) {
             name = name.split(' ').join('').toLowerCase();
@@ -36,7 +36,7 @@ module.exports = function (item, cb) {
         var arr = [];
         var sizes = JSON.parse(res);
 
-        if (!item) {
+        if (!item || item.length === 0) {
             sizes.forEach(function (item) {
                 ret.push({
                     name: slugify(item['Device Name']).toLowerCase(),
