@@ -1,6 +1,6 @@
 {
   "name": "viewport-list",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Return a list of devices and their viewports",
   "license": "MIT",
   "repository": "kevva/viewport-list",
