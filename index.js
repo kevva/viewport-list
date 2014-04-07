@@ -40,8 +40,8 @@ module.exports = function (item, cb) {
             sizes.forEach(function (item) {
                 ret.push({
                     name: slugify(item['Device Name']).toLowerCase(),
-                    platform: item.Platform,
-                    os: item['OS Version'],
+                    platform: item.Platform.toLowerCase(),
+                    os: item['OS Version'].toLowerCase(),
                     size: item['Portrait Width'] + 'x' + item['Landscape Width'],
                     release: item['Release Date']
                 });
@@ -65,8 +65,8 @@ module.exports = function (item, cb) {
         arr.forEach(function (item) {
             ret.push({
                 name: slugify(item['Device Name']).toLowerCase(),
-                platform: item.Platform,
-                os: item['OS Version'],
+                platform: item.Platform.toLowerCase(),
+                os: item['OS Version'].toLowerCase(),
                 size: item['Portrait Width'] + 'x' + item['Landscape Width'],
                 release: item['Release Date']
             });
