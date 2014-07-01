@@ -1,7 +1,6 @@
 'use strict';
 
 var got = require('got');
-var slugify = require('slugify');
 
 /**
  * Return a list of devices and their viewports
@@ -39,7 +38,7 @@ module.exports = function (item, cb) {
         if (!item || item.length === 0) {
             sizes.forEach(function (item) {
                 ret.push({
-                    name: slugify(item['Device Name']).toLowerCase(),
+                    name: item['Device Name'].toLowerCase(),
                     platform: item.Platform.toLowerCase(),
                     os: item['OS Version'].toLowerCase(),
                     size: item['Portrait Width'] + 'x' + item['Landscape Width'],
@@ -64,7 +63,7 @@ module.exports = function (item, cb) {
 
         arr.forEach(function (item) {
             ret.push({
-                name: slugify(item['Device Name']).toLowerCase(),
+                name: item['Device Name'].toLowerCase(),
                 platform: item.Platform.toLowerCase(),
                 os: item['OS Version'].toLowerCase(),
                 size: item['Portrait Width'] + 'x' + item['Landscape Width'],
