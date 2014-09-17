@@ -25,7 +25,7 @@ module.exports = function (items, opts, cb) {
     if (opts.host && opts.port) {
         opts.path = 'http://viewportsizes.com/devices.json';
         opts.headers = assign({
-            'Host': 'http://viewportsizes.com/devices.json'
+            Host: 'http://viewportsizes.com/devices.json'
         }, opts.headers || {});
     }
 
