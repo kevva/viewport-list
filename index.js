@@ -5,71 +5,57 @@ var got = require('got');
 /**
  * Return a list of devices and their viewports
  *
- * @param {String|Array} item
+ * @param {Array} items
  * @param {Function} cb
  * @api public
  */
 
-module.exports = function (item, cb) {
-    var items = [];
-    var ret = [];
-
-    if (!cb && typeof item === 'function') {
-        cb = item;
-        item = null;
+module.exports = function (items, cb) {
+    if (!cb && typeof items === 'function') {
+        cb = items;
+        items = [];
     }
 
-    if (item && item.length !== 0) {
-        item = Array.isArray(item) ? item : [item];
-        item.forEach(function (name) {
-            name = name.split(' ').join('').toLowerCase();
-            items.push(name);
+    if (items.length) {
+        items = items.map(function (item) {
+            return item.split(' ').join('').toLowerCase();
         });
     }
 
     got('http://viewportsizes.com/devices.json', function (err, res) {
         if (err) {
-            return cb(err);
+            cb(err);
+            return;
         }
 
-        var arr = [];
-        var sizes = JSON.parse(res);
+        var ret = [];
+        var sizes = JSON.parse(res).map(function (size) {
+            return {
+                name: size['Device Name'].toLowerCase(),
+                platform: size.Platform.toLowerCase(),
+                os: size['OS Version'].toLowerCase(),
+                size: size['Portrait Width'] + 'x' + size['Landscape Width'],
+                release: size['Release Date']
+            };
+        });
 
-        if (!item || item.length === 0) {
-            sizes.forEach(function (item) {
-                ret.push({
-                    name: item['Device Name'].toLowerCase(),
-                    platform: item.Platform.toLowerCase(),
-                    os: item['OS Version'].toLowerCase(),
-                    size: item['Portrait Width'] + 'x' + item['Landscape Width'],
-                    release: item['Release Date']
-                });
-            });
-
-            return cb(null, ret);
+        if (!items.length) {
+            cb(null, sizes);
+            return;
         }
 
         items.forEach(function (item) {
-            var i = sizes.filter(function (size) {
-                return size['Device Name'].split(' ').join('').toLowerCase().indexOf(item) !== -1;
+            sizes.filter(function (size) {
+                return size.name.split(' ').join('').indexOf(item) !== -1;
+            }).forEach(function (size) {
+                ret.push(size);
             });
-
-            arr = arr.concat(i);
         });
 
-        if (arr.length === 0) {
-            return cb('Couldn\'t get any items');
+        if (!ret.length) {
+            cb(new Error('Couldn\'t get any items'));
+            return;
         }
-
-        arr.forEach(function (item) {
-            ret.push({
-                name: item['Device Name'].toLowerCase(),
-                platform: item.Platform.toLowerCase(),
-                os: item['OS Version'].toLowerCase(),
-                size: item['Portrait Width'] + 'x' + item['Landscape Width'],
-                release: item['Release Date']
-            });
-        });
 
         cb(null, ret);
     });
