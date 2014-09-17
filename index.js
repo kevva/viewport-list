@@ -17,7 +17,7 @@ module.exports = function (items, opts, cb) {
         cb = items;
         opts = {};
         items = [];
-    } else if (Array.isArray(items) && typeof opts === 'function' && !cb) {
+    } else if (typeof opts === 'function' && !cb) {
         cb = opts;
         opts = {};
     }
