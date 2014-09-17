@@ -29,11 +29,11 @@
     "viewport"
   ],
   "dependencies": {
-    "get-stdin": "^0.1.0",
-    "got": "^0.1.0",
-    "to-csv": "^0.0.1"
+    "get-stdin": "^3.0.0",
+    "got": "^1.2.0",
+    "to-csv": "^0.0.2"
   },
   "devDependencies": {
-    "ava": "0.0.3"
+    "ava": "^0.0.4"
   }
 }
