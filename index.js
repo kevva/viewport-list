@@ -1,19 +1,32 @@
 'use strict';
 
+var assign = require('object-assign');
 var got = require('got');
 
 /**
  * Return a list of devices and their viewports
  *
  * @param {Array} items
+ * @param {Object} opts
  * @param {Function} cb
  * @api public
  */
 
-module.exports = function (items, cb) {
-    if (!cb && typeof items === 'function') {
+module.exports = function (items, opts, cb) {
+    if (typeof items === 'function' && !opts && !cb) {
         cb = items;
+        opts = {};
         items = [];
+    } else if (Array.isArray(items) && typeof opts === 'function' && !cb) {
+        cb = opts;
+        opts = {};
+    }
+
+    if (opts.host && opts.port) {
+        opts.path = 'http://viewportsizes.com/devices.json';
+        opts.headers = assign({
+            'Host': 'http://viewportsizes.com/devices.json'
+        }, opts.headers || {});
     }
 
     if (items.length) {
@@ -22,7 +35,7 @@ module.exports = function (items, cb) {
         });
     }
 
-    got('http://viewportsizes.com/devices.json', function (err, res) {
+    got('http://viewportsizes.com/devices.json', opts, function (err, res) {
         if (err) {
             cb(err);
             return;
