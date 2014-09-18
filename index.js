@@ -13,6 +13,8 @@ var got = require('got');
  */
 
 module.exports = function (items, opts, cb) {
+    items = items || [];
+
     if (typeof items === 'function' && !opts && !cb) {
         cb = items;
         opts = {};
