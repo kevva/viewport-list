@@ -30,10 +30,10 @@
   ],
   "dependencies": {
     "get-stdin": "^3.0.0",
-    "got": "^1.2.0",
+    "got": "^2.2.0",
     "meow": "^2.0.0",
-    "object-assign": "^1.0.0",
-    "to-csv": "^0.0.2"
+    "object-assign": "^2.0.0",
+    "to-csv": "^0.0.3"
   },
   "devDependencies": {
     "ava": "^0.0.4"
