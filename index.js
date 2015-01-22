@@ -1,7 +1,8 @@
 'use strict';
 
-var assign = require('object-assign');
+var getProxy = require('get-proxy');
 var got = require('got');
+var url = require('url');
 
 /**
  * Return a list of devices and their viewports
@@ -12,23 +13,19 @@ var got = require('got');
  * @api public
  */
 
-module.exports = function (items, opts, cb) {
-	items = items || [];
+module.exports = function (items, cb) {
+	var opts = {};
 
-	if (typeof items === 'function' && !opts && !cb) {
+	if (typeof items === 'function' && !cb) {
 		cb = items;
-		opts = {};
 		items = [];
-	} else if (typeof opts === 'function' && !cb) {
-		cb = opts;
-		opts = {};
 	}
 
-	if (opts.host && opts.port) {
+	if (getProxy()) {
+		opts.host = url.parse(getProxy()).hostname;
+		opts.port = url.parse(getProxy()).port;
 		opts.path = 'http://viewportsizes.com/devices.json';
-		opts.headers = assign({
-			Host: 'http://viewportsizes.com/devices.json'
-		}, opts.headers || {});
+		opts.headers = { Host: 'http://viewportsizes.com/devices.json' };
 	}
 
 	if (items.length) {
