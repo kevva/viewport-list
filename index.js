@@ -8,22 +8,22 @@ var url = require('url');
  * Return a list of devices and their viewports
  *
  * @param {Array} items
- * @param {Object} opts
  * @param {Function} cb
  * @api public
  */
 
 module.exports = function (items, cb) {
 	var opts = {};
+	var proxy = getProxy();
 
 	if (typeof items === 'function' && !cb) {
 		cb = items;
 		items = [];
 	}
 
-	if (getProxy()) {
-		opts.host = url.parse(getProxy()).hostname;
-		opts.port = url.parse(getProxy()).port;
+	if (proxy) {
+		opts.host = url.parse(proxy).hostname;
+		opts.port = url.parse(proxy).port;
 		opts.path = 'http://viewportsizes.com/devices.json';
 		opts.headers = { Host: 'http://viewportsizes.com/devices.json' };
 	}
