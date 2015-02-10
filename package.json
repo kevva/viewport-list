@@ -30,9 +30,9 @@
   ],
   "dependencies": {
     "get-proxy": "^1.0.0",
-    "get-stdin": "^3.0.0",
+    "get-stdin": "^4.0.1",
     "got": "^2.2.0",
-    "meow": "^2.0.0",
+    "meow": "^3.0.0",
     "to-csv": "^0.0.3"
   },
   "devDependencies": {
