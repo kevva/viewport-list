@@ -1,8 +1,8 @@
 'use strict';
 
+var url = require('url');
 var getProxy = require('get-proxy');
 var got = require('got');
-var url = require('url');
 
 module.exports = function (items, cb) {
 	var opts = {};
