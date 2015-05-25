@@ -1,5 +1,4 @@
 'use strict';
-
 var url = require('url');
 var getProxy = require('get-proxy');
 var got = require('got');

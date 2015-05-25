@@ -23,7 +23,11 @@
     "index.js"
   ],
   "keywords": [
+    "app",
+    "cli",
+    "cli-app",
     "device",
+    "json",
     "resolution",
     "size",
     "viewport"
