@@ -5,7 +5,7 @@ var getProxy = require('get-proxy');
 var got = require('got');
 
 module.exports = function (items, cb) {
-	var opts = {};
+	var opts = {json: true};
 	var proxy = getProxy();
 
 	if (typeof items === 'function' && !cb) {
@@ -33,7 +33,7 @@ module.exports = function (items, cb) {
 		}
 
 		var ret = [];
-		var sizes = JSON.parse(res).map(function (size) {
+		var sizes = res.map(function (size) {
 			return {
 				name: size['Device Name'].toLowerCase(),
 				platform: size.Platform.toLowerCase(),
