@@ -46,25 +46,6 @@ Type: `array`
 An array of objects containing devices and their attributes.
 
 
-## CLI
-
-```
-$ npm install --global viewport-list
-```
-
-```bash
-$ viewport-list --help
-
-  Usage
-    $ viewport-list [device]
-    $ viewport-list < <file>
-
-  Example
-    $ viewport-list iphone4 iphone5
-    $ viewport-list < devices.txt
-```
-
-
 ## License
 
 MIT © [Kevin Mårtensson](https://github.com/kevva)

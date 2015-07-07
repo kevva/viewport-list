@@ -12,20 +12,13 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "bin": {
-    "viewport-list": "cli.js"
-  },
   "scripts": {
     "test": "node test.js"
   },
   "files": [
-    "cli.js",
     "index.js"
   ],
   "keywords": [
-    "app",
-    "cli",
-    "cli-app",
     "device",
     "json",
     "resolution",
