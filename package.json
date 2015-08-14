@@ -28,9 +28,9 @@
   "dependencies": {
     "get-proxy": "^1.0.0",
     "get-stdin": "^4.0.1",
-    "got": "^2.2.0",
+    "got": "^4.1.1",
     "meow": "^3.3.0",
-    "to-csv": "^0.0.3"
+    "to-csv": "^0.1.0"
   },
   "devDependencies": {
     "ava": "^0.0.4"
