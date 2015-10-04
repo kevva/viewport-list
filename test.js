@@ -2,19 +2,26 @@ import test from 'ava';
 import viewportList from './';
 
 test('return viewports', t => {
-	t.plan(2);
+	t.plan(1);
 
-	viewportList(['iphone 4', 'iphone 5'], (err, res) => {
-		t.ifError(err);
+	viewportList(['iphone 4', 'iphone 5']).then(res => {
 		t.is(res.length, 5);
 	});
 });
 
 test('return all viewports', t => {
+	t.plan(1);
+
+	viewportList().then(res => {
+		t.ok(res.length > 50);
+	});
+});
+
+test('error when no viewports are found', t => {
 	t.plan(2);
 
-	viewportList((err, res) => {
-		t.ifError(err);
-		t.ok(res.length > 50);
+	viewportList(['foobar']).catch(err => {
+		t.ok(err);
+		t.is(err.message, 'Couldn\'t get any items');
 	});
 });

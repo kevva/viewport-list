@@ -26,6 +26,7 @@
     "viewport"
   ],
   "dependencies": {
+    "arrify": "^1.0.0",
     "get-proxy": "^1.0.0",
     "get-stdin": "^4.0.1",
     "got": "^4.1.1",
