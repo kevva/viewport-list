@@ -1,21 +1,20 @@
-'use strict';
-var test = require('ava');
-var viewport = require('./');
+import test from 'ava';
+import viewportList from './';
 
-test('return viewports', function (t) {
+test('return viewports', t => {
 	t.plan(2);
 
-	viewport(['iphone 4', 'iphone 5'], function (err, res) {
-		t.assert(!err, err);
-		t.assert(res.length === 5, res.length);
+	viewportList(['iphone 4', 'iphone 5'], (err, res) => {
+		t.ifError(err);
+		t.is(res.length, 5);
 	});
 });
 
-test('return all viewports', function (t) {
+test('return all viewports', t => {
 	t.plan(2);
 
-	viewport(function (err, res) {
-		t.assert(!err, err);
-		t.assert(res.length > 50, res.length);
+	viewportList((err, res) => {
+		t.ifError(err);
+		t.ok(res.length > 50);
 	});
 });
