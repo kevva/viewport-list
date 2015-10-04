@@ -15,9 +15,9 @@ $ npm install --save viewport-list
 Pass in a optional keyword which is a device name from [this list](http://viewportsizes.com).
 
 ```js
-var viewport = require('viewport-list');
+var viewportList = require('viewport-list');
 
-viewport(['iphone 4s'], function (err, items) {
+viewportList(['iphone 4s'], function (err, items) {
 	console.log(items);
 	//=> [{name: 'iphone 4s', platform: 'iOS', os: '4.3.5', size: '320x480', release: '2011-10'}]
 });
@@ -26,7 +26,7 @@ viewport(['iphone 4s'], function (err, items) {
 
 ## API
 
-### viewport([items], callback)
+### viewportList([items], callback)
 
 #### items
 
