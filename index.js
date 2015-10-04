@@ -1,15 +1,19 @@
 'use strict';
 var url = require('url');
+var arrify = require('arrify');
 var getProxy = require('get-proxy');
 var got = require('got');
 
-module.exports = function (items, cb) {
+module.exports = function (items) {
 	var opts = {json: true};
 	var proxy = getProxy();
 
-	if (typeof items === 'function' && !cb) {
-		cb = items;
-		items = [];
+	items = arrify(items);
+
+	if (items.length) {
+		items = items.map(function (item) {
+			return item.split(' ').join('').toLowerCase();
+		});
 	}
 
 	if (proxy) {
@@ -19,20 +23,9 @@ module.exports = function (items, cb) {
 		opts.headers = {Host: 'http://viewportsizes.com/devices.json'};
 	}
 
-	if (items.length) {
-		items = items.map(function (item) {
-			return item.split(' ').join('').toLowerCase();
-		});
-	}
-
-	got('http://viewportsizes.com/devices.json', opts, function (err, res) {
-		if (err) {
-			cb(err);
-			return;
-		}
-
+	return got('http://viewportsizes.com/devices.json', opts).then(function (res) {
 		var ret = [];
-		var sizes = res.map(function (size) {
+		var sizes = res.body.map(function (size) {
 			return {
 				name: size['Device Name'].toLowerCase(),
 				platform: size.Platform.toLowerCase(),
@@ -43,8 +36,7 @@ module.exports = function (items, cb) {
 		});
 
 		if (!items.length) {
-			cb(null, sizes);
-			return;
+			return sizes;
 		}
 
 		items.forEach(function (item) {
@@ -56,10 +48,9 @@ module.exports = function (items, cb) {
 		});
 
 		if (!ret.length) {
-			cb(new Error('Couldn\'t get any items'));
-			return;
+			throw new Error('Couldn\'t get any items');
 		}
 
-		cb(null, ret);
+		return ret;
 	});
 };
