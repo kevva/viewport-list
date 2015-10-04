@@ -1,21 +1,23 @@
-'use strict';
-var test = require('ava');
-var viewport = require('./');
+import test from 'ava';
+import viewportList from './';
 
-test('return viewports', function (t) {
-	t.plan(2);
-
-	viewport(['iphone 4', 'iphone 5'], function (err, res) {
-		t.assert(!err, err);
-		t.assert(res.length === 5, res.length);
-	});
+test('return viewports', async t => {
+	t.plan(1);
+	const viewports = await viewportList(['iphone 4', 'iphone 5']);
+	t.is(viewports.length, 5);
 });
 
-test('return all viewports', function (t) {
+test('return all viewports', async t => {
+	t.plan(1);
+	const viewports = await viewportList();
+	t.ok(viewports.length > 50);
+});
+
+test('error when no viewports are found', t => {
 	t.plan(2);
 
-	viewport(function (err, res) {
-		t.assert(!err, err);
-		t.assert(res.length > 50, res.length);
+	viewportList(['foobar']).catch(err => {
+		t.ok(err);
+		t.is(err.message, 'Couldn\'t get any items');
 	});
 });
