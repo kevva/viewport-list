@@ -1,23 +1,22 @@
 import test from 'ava';
-import viewportList from './';
+import fn from './';
 
 test('return viewports', async t => {
-	t.plan(1);
-	const viewports = await viewportList(['iphone 4', 'iphone 5']);
+	const viewports = await fn(['iphone 4', 'iphone 5']);
 	t.is(viewports.length, 5);
 });
 
 test('return all viewports', async t => {
-	t.plan(1);
-	const viewports = await viewportList();
+	const viewports = await fn();
 	t.ok(viewports.length > 50);
 });
 
-test('error when no viewports are found', t => {
-	t.plan(2);
-
-	viewportList(['foobar']).catch(err => {
+test('error when no viewports are found', async t => {
+	try {
+		await fn(['foobar']);
+		t.fail();
+	} catch (err) {
 		t.ok(err);
 		t.is(err.message, 'Couldn\'t get any items');
-	});
+	}
 });

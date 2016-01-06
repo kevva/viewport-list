@@ -28,7 +28,7 @@ viewportList(['iphone 4s']).then(items => {
 
 ### viewportList([items])
 
-Returns a promise that resolves to an array of viewports.
+Returns a promise for an array of viewports.
 
 #### items
 
@@ -36,6 +36,11 @@ Type: `array`
 Default: `[]`
 
 An array of device names to fetch.
+
+
+## Related
+
+* [viewport-list-cli](https://github.com/kevva/viewport-list-cli) - CLI for this module
 
 
 ## License

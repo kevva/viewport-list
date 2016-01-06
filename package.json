@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "ava"
+    "test": "xo && ava"
   },
   "files": [
     "index.js"
@@ -34,11 +34,7 @@
     "to-csv": "^0.1.0"
   },
   "devDependencies": {
-    "ava": "^0.2.0"
-  },
-  "xo": {
-    "ignores": [
-      "test.js"
-    ]
+    "ava": "*",
+    "xo": "*"
   }
 }
