@@ -13,10 +13,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "prepublish": "./make.js"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "data.json"
   ],
   "keywords": [
     "device",
@@ -26,15 +28,13 @@
     "viewport"
   ],
   "dependencies": {
-    "arrify": "^1.0.0",
-    "get-proxy": "^1.0.0",
-    "get-stdin": "^4.0.1",
-    "got": "^4.1.1",
-    "meow": "^3.3.0",
-    "to-csv": "^0.1.0"
+    "arrify": "^1.0.0"
   },
   "devDependencies": {
     "ava": "*",
+    "got": "^5.6.0",
+    "pify": "^2.3.0",
+    "pinkie-promise": "^2.0.1",
     "xo": "*"
   }
 }

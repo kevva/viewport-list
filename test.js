@@ -8,15 +8,9 @@ test('return viewports', async t => {
 
 test('return all viewports', async t => {
 	const viewports = await fn();
-	t.ok(viewports.length > 50);
+	t.true(viewports.length > 50);
 });
 
-test('error when no viewports are found', async t => {
-	try {
-		await fn(['foobar']);
-		t.fail();
-	} catch (err) {
-		t.ok(err);
-		t.is(err.message, 'Couldn\'t get any items');
-	}
+test('error when no viewports are found', t => {
+	t.throws(fn.bind(undefined, ['foobar']), 'Couldn\'t get any items');
 });
