@@ -2,7 +2,7 @@ import test from 'ava';
 import m from './';
 
 test('wrong input', async t => {
-	t.throws(m.bind(undefined, 'foobar'), 'Expected an `Array`, found a `string`');
+	t.throws(m.bind(undefined, 'foobar'), 'Expected `Array`, got `string`');
 });
 
 test('error when no viewports are found', t => {
