@@ -3,7 +3,7 @@ const devices = require('./data.json').devices;
 
 module.exports = items => {
 	if (items && !Array.isArray(items)) {
-		throw new Error(`Expected an \`Array\`, found a \`${typeof items}\``);
+		throw new Error(`Expected \`Array\`, got \`${typeof items}\``);
 	}
 
 	if (!items) {
