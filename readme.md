@@ -32,7 +32,7 @@ Returns a promise for an array of viewports.
 
 #### items
 
-Type: `array`  
+Type: `array`<br>
 Default: `[]`
 
 An array of device names to fetch.
