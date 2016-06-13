@@ -17,10 +17,8 @@ Pass in a optional keyword which is a device name from [this list](http://viewpo
 ```js
 const viewportList = require('viewport-list');
 
-viewportList(['iphone 4s']).then(items => {
-	console.log(items);
-	//=> [{name: 'iphone 4s', platform: 'iOS', os: '4.3.5', size: '320x480', release: '2011-10'}]
-});
+console.log(viewportList(['iphone 4s']));
+//=> [{name: 'iphone 4s', platform: 'iOS', os: '4.3.5', size: '320x480', release: '2011-10'}]
 ```
 
 
@@ -28,11 +26,11 @@ viewportList(['iphone 4s']).then(items => {
 
 ### viewportList([items])
 
-Returns a promise for an array of viewports.
+Returns an array of viewports.
 
 #### items
 
-Type: `array`  
+Type: `Array`<br>
 Default: `[]`
 
 An array of device names to fetch.
