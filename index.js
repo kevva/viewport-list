@@ -1,27 +1,22 @@
 'use strict';
-var arrify = require('arrify');
-var devices = require('./data.json').devices;
+const devices = require('./data.json').devices;
 
-module.exports = function (items) {
-	items = arrify(items);
+module.exports = items => {
+	if (items && !Array.isArray(items)) {
+		throw new Error(`Expected an \`Array\`, found a \`${typeof items}\``);
+	}
 
-	if (!items.length) {
+	if (!items) {
 		return devices;
 	}
 
-	items = items.map(function (item) {
-		return item.split(' ').join('').toLowerCase();
-	});
+	items = items.map(item => item.split(' ').join('').toLowerCase());
 
-	var ret = [];
+	let ret = [];
 
-	items.forEach(function (item) {
-		devices.filter(function (device) {
-			return device.name.split(' ').join('').indexOf(item) !== -1;
-		}).forEach(function (device) {
-			ret.push(device);
-		});
-	});
+	for (const item of items) {
+		ret = ret.concat(devices.filter(device => device.name.split(' ').join('').includes(item)));
+	}
 
 	if (!ret.length) {
 		throw new Error('Couldn\'t get any items');

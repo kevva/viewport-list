@@ -1,16 +1,18 @@
 import test from 'ava';
 import m from './';
 
-test('return viewports', async t => {
-	const viewports = await m(['iphone 4', 'iphone 5']);
-	t.is(viewports.length, 5);
-});
-
-test('return all viewports', async t => {
-	const viewports = await m();
-	t.true(viewports.length > 50);
+test('wrong input', async t => {
+	t.throws(m.bind(undefined, 'foobar'), 'Expected an `Array`, found a `string`');
 });
 
 test('error when no viewports are found', t => {
 	t.throws(m.bind(undefined, ['foobar']), 'Couldn\'t get any items');
+});
+
+test('return viewports', async t => {
+	t.is(m(['iphone 4', 'iphone 5']).length, 5);
+});
+
+test('return all viewports', async t => {
+	t.true(m().length > 50);
 });
