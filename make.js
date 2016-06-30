@@ -3,6 +3,7 @@
 const fs = require('fs');
 const pify = require('pify');
 const got = require('got');
+
 const fsP = pify(fs);
 
 got('viewportsizes.com/devices.json', {json: true})
