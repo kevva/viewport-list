@@ -10,12 +10,12 @@ module.exports = items => {
 		return devices;
 	}
 
-	items = items.map(item => item.split(' ').join('').toLowerCase());
+	items = items.map(x => x.split(' ').join('').toLowerCase());
 
 	let ret = [];
 
-	for (const item of items) {
-		ret = ret.concat(devices.filter(device => device.name.split(' ').join('').includes(item)));
+	for (const x of items) {
+		ret = ret.concat(devices.filter(y => y.name.split(' ').join('').includes(x)));
 	}
 
 	if (!ret.length) {
