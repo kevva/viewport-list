@@ -21,7 +21,7 @@ module.exports = items => {
 		ret = ret.concat(list.filter(y => y.name.split(' ').join('').includes(x)));
 	}
 
-	if (!ret.length) {
+	if (ret.length === 0) {
 		throw new Error('Couldn\'t get any items');
 	}
 
