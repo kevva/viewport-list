@@ -16,3 +16,7 @@ test('return viewports', async t => {
 test('return all viewports', async t => {
 	t.true(m().length > 50);
 });
+
+test('have custom list of devices', async t => {
+	t.is(m(['iphone 7']).length, 2);
+});
