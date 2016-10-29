@@ -3,6 +3,7 @@
 const fs = require('fs');
 const pify = require('pify');
 const got = require('got');
+const customData = require('./custom.json');
 
 const fsP = pify(fs);
 
@@ -18,7 +19,7 @@ got('viewportsizes.com/devices.json', {json: true})
 
 		const data = {
 			timestamp: new Date(),
-			devices
+			devices: devices.concat(customData)
 		};
 
 		return fsP.writeFile('data.json', JSON.stringify(data, undefined, '\t'));

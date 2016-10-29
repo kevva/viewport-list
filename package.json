@@ -18,7 +18,6 @@
   },
   "files": [
     "index.js",
-    "custom.json",
     "data.json"
   ],
   "keywords": [

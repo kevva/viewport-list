@@ -1,5 +1,5 @@
 {
-	"timestamp": "2016-08-31T15:14:07.470Z",
+	"timestamp": "2016-10-29T18:54:48.286Z",
 	"devices": [
 		{
 			"name": "acer iconia tab a1-810",
@@ -2002,6 +2002,20 @@
 			"os": "4.1.2",
 			"size": "320x534",
 			"release": "2013-10"
+		},
+		{
+			"name": "iphone 7",
+			"platform": "ios",
+			"os": "10.0",
+			"size": "375x667",
+			"release": "2016-09"
+		},
+		{
+			"name": "iphone 7 plus",
+			"platform": "ios",
+			"os": "10.0",
+			"size": "414x736",
+			"release": "2016-09"
 		}
 	]
 }
