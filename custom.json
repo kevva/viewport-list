@@ -12,5 +12,19 @@
 		"os": "10.0",
 		"size": "414x736",
 		"release": "2016-09"
+	},
+	{
+		"name": "google pixel",
+		"platform": "android",
+		"os": "7.1",
+		"size": "1080x1920",
+		"release": "2016-10"
+	},
+	{
+		"name": "google pixel xl",
+		"platform": "android",
+		"os": "7.1",
+		"size": "1440x2560",
+		"release": "2016-10"
 	}
 ]
