@@ -1,16 +1,13 @@
 'use strict';
 const devices = require('./data').devices;
-const customDevices = require('./custom');
 
 module.exports = items => {
-	const list = devices.concat(customDevices);
-
 	if (items && !Array.isArray(items)) {
 		throw new Error(`Expected \`Array\`, got \`${typeof items}\``);
 	}
 
 	if (!items) {
-		return list;
+		return devices;
 	}
 
 	items = items.map(x => x.split(' ').join('').toLowerCase());
@@ -18,7 +15,7 @@ module.exports = items => {
 	let ret = [];
 
 	for (const x of items) {
-		ret = ret.concat(list.filter(y => y.name.split(' ').join('').includes(x)));
+		ret = ret.concat(devices.filter(y => y.name.split(' ').join('').includes(x)));
 	}
 
 	if (ret.length === 0) {
