@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save viewport-list
+$ npm install viewport-list
 ```
 
 
