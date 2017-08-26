@@ -1101,6 +1101,13 @@
 			"release": "2013-07"
 		},
 		{
+			"name": "nexus 7 2013 LTE (density ~323 ppi)",
+			"platform": "android",
+			"os": "6.0",
+			"size": "1200x1920",
+			"release": "2013-07"
+		},
+		{
 			"name": "nexus one",
 			"platform": "android",
 			"os": "2.3.7",
